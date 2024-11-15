@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import java.util.UUID;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Builder
-public class ProductRequest {
+public class ProductRequest implements Serializable {
     @NotBlank
     @NotBlank
     private String code;
@@ -32,4 +33,5 @@ public class ProductRequest {
     private Double stockMin;
 
     private UUID idUser;
+    private Long idProductType;
 }

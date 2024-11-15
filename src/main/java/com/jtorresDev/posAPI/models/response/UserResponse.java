@@ -16,9 +16,9 @@ import java.util.UUID;
 @Builder
 public class UserResponse implements Serializable {
     private UUID id;
-    private String email;
+   // private String email;
     private String username;
-    private String password;
+   // private String password;
 
     private RoleResponse idRol;
 

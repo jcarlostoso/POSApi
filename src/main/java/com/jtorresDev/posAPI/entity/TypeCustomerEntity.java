@@ -2,10 +2,7 @@ package com.jtorresDev.posAPI.entity;
 
 import com.jtorresDev.posAPI.util.enums.ETypeCustomer;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -23,6 +20,8 @@ public class TypeCustomerEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private ETypeCustomer name;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "type")
     private Set<CustomerEntity> customer;
 

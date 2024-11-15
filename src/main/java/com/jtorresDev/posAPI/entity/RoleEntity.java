@@ -3,10 +3,7 @@ package com.jtorresDev.posAPI.entity;
 import com.jtorresDev.posAPI.util.enums.ERoles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -25,6 +22,8 @@ public class RoleEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private ERoles name;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "role")
     private Set<UserEntity> user;
 

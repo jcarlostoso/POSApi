@@ -7,6 +7,7 @@ public interface ICrudService<RQ, RS, ID> {
     RS create(RQ request);
 
     RS read(ID id);
+
     Page<RS> realAll(Integer page, Integer size, SortType sortType);
 
     RS update(RQ request, ID id);

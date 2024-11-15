@@ -4,8 +4,10 @@ import com.jtorresDev.posAPI.abstract_services.IProductsService;
 import com.jtorresDev.posAPI.entity.ProductEntity;
 import com.jtorresDev.posAPI.models.request.ProductRequest;
 import com.jtorresDev.posAPI.models.response.ProductResponse;
+import com.jtorresDev.posAPI.models.response.ProductTypeResponse;
 import com.jtorresDev.posAPI.models.response.UserResponse;
 import com.jtorresDev.posAPI.repository.ProductRepository;
+import com.jtorresDev.posAPI.repository.ProductTypeRepository;
 import com.jtorresDev.posAPI.repository.UserRepository;
 import com.jtorresDev.posAPI.util.enums.SortType;
 import lombok.AllArgsConstructor;
@@ -22,10 +24,12 @@ import java.time.LocalDate;
 public class ProductServiceImpl implements IProductsService {
     private ProductRepository productRepository;
     private UserRepository userRepository;
-
+    private ProductTypeRepository productTypeRepository;
     @Override
     public ProductResponse create(ProductRequest request) {
         var  user= userRepository.findById(request.getIdUser()).orElseThrow();
+        var  productType= productTypeRepository.findById(request.getIdProductType()).orElseThrow();
+
         var productToPersist = ProductEntity.builder()
                 .code(request.getCode())
                 .name(request.getName())
@@ -36,6 +40,7 @@ public class ProductServiceImpl implements IProductsService {
                 .registrationDate(LocalDate.now())
                 .updatedDate(LocalDate.now())
                 .idUser(user)
+                .productType(productType)
                 .build();
         var productPersisted = this.productRepository.save(productToPersist);
 
@@ -72,7 +77,8 @@ public class ProductServiceImpl implements IProductsService {
         productToUpdate.setStockMin(request.getStockMin());
         productToUpdate.setUpdatedDate(LocalDate.now());
         productToUpdate.setIdUser(user);
-        return this.entityToResponse(productToUpdate);
+        var productUpdate=this.productRepository.save(productToUpdate);
+        return this.entityToResponse(productUpdate);
     }
 
     @Override
@@ -87,8 +93,11 @@ public class ProductServiceImpl implements IProductsService {
 
         var userResponse =new UserResponse();
         BeanUtils.copyProperties(entity.getIdUser(),userResponse);
-
         response.setIdUser(userResponse);
+
+        var productTypeResponse = new ProductTypeResponse();
+        BeanUtils.copyProperties(entity.getProductType(), productTypeResponse);
+        response.setProductType(productTypeResponse);
         return response;
     }
 }

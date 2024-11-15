@@ -1,33 +1,26 @@
 package com.jtorresDev.posAPI.models.response;
 
-import com.jtorresDev.posAPI.entity.ProductEntity;
-import com.jtorresDev.posAPI.entity.ProductTypeEntity;
 import com.jtorresDev.posAPI.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductResponse {
+public class SupplyResponse implements Serializable {
     private Long id;
     private String code;
     private String name;
-    private String description;
-    private BigDecimal costPrice;
     private BigDecimal price;
-    private Double stockMin;
     private LocalDate registrationDate;
-    private LocalDate updatedDate;
+    private LocalDate modificationDate;
 
-    private ProductTypeResponse productType;
-    private UserResponse idUser;
-
+    private UserResponse user;
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
-@Controller
+@RestController
 @RequestMapping(path = "product")
 @AllArgsConstructor
 public class ProductController {

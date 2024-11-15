@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 import java.util.UUID;
-
 @RestController
 @RequestMapping(path = "customer")
 @AllArgsConstructor

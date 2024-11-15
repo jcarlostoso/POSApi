@@ -17,7 +17,7 @@ public class CustomerResponse implements Serializable {
     private String username;
     private String surnames;
     private String email;
-    private String password;
+    //private String password;
     private boolean enabled;
     private TypeCustomerResponse idType;
 }
